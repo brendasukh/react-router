@@ -16,19 +16,23 @@ export default class Main extends Component {
 
   render () {
     return (
-      <div id="main" className="container-fluid">
-        <div className="col-xs-2">
-          <Sidebar/>
+      <HashRouter>
+        <div id="main" className="container-fluid">
+
+          <div className="col-xs-2">
+
+            <Sidebar/>
+          </div>
+
+          <div className="col-xs-10">
+            <Route exact path='/' component={AllAlbums}></Route>
+            <Route exact path='/albums' component={AllAlbums}></Route>
+            <Route path='/albums/:albumId' component={SingleAlbum} />
+          </div>
+
+          <Player />
         </div>
-        <HashRouter>
-        <div className="col-xs-10">
-          <Route exact path='/albums' component={AllAlbums}></Route>
-          <Route exact path='/' component={AllAlbums}></Route>     
-          <Route exact path='/albums/:albumId' component={SingleAlbum} />
-        </div>
-        </HashRouter>
-        <Player />
-      </div>
+      </HashRouter>
     )
   }
 }
