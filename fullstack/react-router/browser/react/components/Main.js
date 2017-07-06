@@ -6,6 +6,7 @@ import Sidebar from './Sidebar';
 import Player from './Player';
 import { HashRouter, Route } from 'react-router-dom';
 import AllArtists from './AllArtists';
+import SingleArtist from './SingleArtist';
 
 export default class Main extends Component {
 
@@ -28,7 +29,8 @@ export default class Main extends Component {
             <Route exact path='/' component={AllAlbums}></Route>
             <Route exact path='/albums' component={AllAlbums}></Route>
             <Route path='/albums/:albumId' component={SingleAlbum} />
-            <Route path='/artists' component={AllArtists} />
+            <Route exact path='/artists' component={AllArtists} />
+            <Route path='/artists/:artistId' component={SingleArtist} />
           </div>
 
           <Player />
