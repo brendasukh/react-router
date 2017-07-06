@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import Songs from './Songs'
+import AllAlbums from './AllAlbums'
 
 
 export default class SingleArtist extends Component {
@@ -47,16 +48,16 @@ export default class SingleArtist extends Component {
       Promise.all([prom1, prom2,prom3])
       .then(console.log('resolved'))
 
-      
+
   }
 
   render(){
 
-    const artist = this.state.artist
+    const art=this.props.match.params.artistId;
     const albums = this.state.albums
     const songs= this.state.songs
     console.log('albums',albums)
-  
+
     return (
         <div>
             <h3>{ this.state.artist }</h3>
@@ -64,32 +65,18 @@ export default class SingleArtist extends Component {
 
 
                <div>
-                <h3>Albums</h3>
-                <div className="row">
-                {
-                  albums.map(album => (
-                    <div className="col-xs-4" key={ album.id }>
-                      <Link to={`/albums/${album.id}`} className="thumbnail">
-                        <img src={ album.imageUrl } />
-                        <div className="caption">
-                          <h5>
+               <Link to={`/artists/${art}/albums`}>
+               <h3>Albums</h3>
+               </Link>
 
-                            <span>{ album.name }</span>
-                          </h5>
-                          <small>{ album.songs.length } songs</small>
-                
-                        </div>
-                        </Link>
-                    </div>
-                  ))
-                }
-                </div>
+                <h4>SONGS</h4>
+                <h4><AllAlbums albums={albums} /> hello</h4>
               </div>
 
-            <h4>SONGS</h4>
-                
+
+
               <Songs songs={songs} />
-            
+
         </div>
     )
 
